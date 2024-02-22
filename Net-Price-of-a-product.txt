@@ -1,0 +1,34 @@
+import java.text.DecimalFormat;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        double[][] testCases = {
+            {99.95, 0.12},
+            {49999.00, 0.28},
+            {720.00, 0.05},
+            {45.00, 0.00}
+        };
+
+        
+        for (double[] testCase : testCases) {
+            double netPrice = testCase[0];
+            double taxRate = testCase[1];
+            double grossPrice = calculateGrossPrice(netPrice, taxRate);
+            System.out.println("Net Price: $" + formatDecimal(netPrice) +
+                               ", Tax Rate: " + formatDecimal(taxRate * 100) + "%" +
+                               ", Gross Price: $" + formatDecimal(grossPrice));
+        }
+    }
+
+    
+    public static double calculateGrossPrice(double netPrice, double taxRate) {
+        return netPrice / (1 + taxRate);
+    }
+
+   
+    public static String formatDecimal(double number) {
+        DecimalFormat df = new DecimalFormat("#,###,##0.00");
+        return df.format(number);
+    }
+}
